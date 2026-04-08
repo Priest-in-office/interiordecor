@@ -1,0 +1,186 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 40px;
+  transition: background 0.5s ease, padding 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+.navbar--scrolled {
+  background: rgba(250, 248, 245, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 14px 40px;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+}
+
+.navbar__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  z-index: 1001;
+}
+
+.navbar__logo-main {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.03em;
+  transition: color 0.4s ease;
+}
+
+.navbar__logo-accent {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent-gold);
+  transition: color 0.4s ease;
+}
+
+.navbar--open .navbar__logo-main { color: var(--text-light); }
+.navbar--open .navbar__logo-accent { color: var(--accent-gold); }
+
+.navbar__links {
+  display: flex;
+  gap: 40px;
+}
+
+.navbar__link {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-gold);
+  transition: width var(--transition-fast);
+}
+
+.navbar__link:hover { color: var(--text-primary); }
+.navbar__link:hover::after { width: 100%; }
+
+.navbar__cta {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.navbar__cta:hover {
+  background: var(--text-primary);
+  color: var(--text-light);
+}
+
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1001;
+  padding: 8px;
+}
+
+.navbar__burger span {
+  display: block;
+  width: 28px;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: transform 0.4s var(--ease-out-expo), opacity 0.3s ease, background 0.3s ease;
+}
+
+.navbar--open .navbar__burger span { background: var(--text-light); }
+.navbar__burger--open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.navbar__burger--open span:nth-child(2) { opacity: 0; }
+.navbar__burger--open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+.navbar__mobile {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-deep);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: circle(0% at calc(100% - 60px) 36px);
+  transition: clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+
+.navbar__mobile--open {
+  clip-path: circle(150% at calc(100% - 60px) 36px);
+  pointer-events: all;
+}
+
+.navbar__mobile-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.navbar__mobile-link {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 300;
+  color: var(--text-light);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s var(--ease-out-expo), color 0.3s ease;
+}
+
+.navbar__mobile--open .navbar__mobile-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.navbar__mobile-link:hover { color: var(--accent-gold); }
+
+.navbar__mobile-cta {
+  margin-top: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease 0.5s, transform 0.5s var(--ease-out-expo) 0.5s,
+              background 0.3s ease, color 0.3s ease;
+}
+
+.navbar__mobile--open .navbar__mobile-cta { opacity: 1; transform: translateY(0); }
+.navbar__mobile-cta:hover { background: var(--accent-gold); color: var(--bg-deep); }
+
+@media (max-width: 900px) {
+  .navbar { padding: 16px 20px; }
+  .navbar--scrolled { padding: 12px 20px; }
+  .navbar__links, .navbar__cta { display: none; }
+  .navbar__burger { display: flex; }
+}

@@ -1,0 +1,67 @@
+.cursor-outer, .cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+}
+
+.cursor-outer {
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  border: 1px solid var(--accent-gold);
+  border-radius: 50%;
+  transition: width 0.4s var(--ease-out-expo), height 0.4s var(--ease-out-expo),
+              margin 0.4s var(--ease-out-expo), background 0.4s var(--ease-out-expo),
+              border-color 0.4s var(--ease-out-expo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor-outer--hover {
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
+  background: var(--accent-gold-light);
+  border-color: var(--accent-gold);
+}
+
+.cursor-outer--text {
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.cursor-outer__label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg-deep);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cursor-outer--text .cursor-outer__label { opacity: 1; }
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+}
+
+@media (pointer: coarse) {
+  .cursor-outer, .cursor-dot { display: none; }
+}

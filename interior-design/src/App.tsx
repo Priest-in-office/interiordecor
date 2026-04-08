@@ -1,121 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useState, useCallback } from 'react';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import Preloader from './components/Preloader';
+import CustomCursor from './components/CustomCursor';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import PortfolioGallery from './components/PortfolioGallery';
+import Services from './components/Services';
+import BeforeAfter from './components/BeforeAfter';
+import Testimonials from './components/Testimonials';
+import About from './components/About';
+import Contact from './components/Contact';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Initialize Lenis smooth scroll
+    const lenis = new Lenis({
+      lerp: 0.075,
+      duration: 1.4,
+      smoothWheel: true,
+    });
+
+    // Sync Lenis with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  const handlePreloaderComplete = useCallback(() => {
+    setIsLoading(false);
+    // Refresh ScrollTrigger after preloader removal
+    setTimeout(() => ScrollTrigger.refresh(), 200);
+  }, []);
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
+      <CustomCursor />
+      <Navbar />
+      <main>
+        <Hero />
+        <PortfolioGallery />
+        <Services />
+        <BeforeAfter />
+        <Testimonials />
+        <About />
+        <Contact />
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
