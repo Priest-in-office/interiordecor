@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,27 +53,27 @@ const Hero = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="hero" id="home">
-      <div className="hero__bg">
+    <section ref={sectionRef} className="relative h-[100vh] flex items-center justify-center overflow-hidden" id="home">
+      <div className="absolute inset-0">
         <img
-          className="hero__bg-image"
+          className="w-full h-full object-cover animate-[kenBurns_25s_ease-in-out_infinite_alternate]"
           src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80"
           alt="Luxury interior design"
         />
-        <div className="hero__overlay" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,13,13,0.55)_0%,rgba(13,13,13,0.4)_50%,rgba(13,13,13,0.65)_100%)]" />
       </div>
-      <div className="hero__content">
-        <h1 ref={titleRef} className="hero__title">
-          <span className="hero__title-line">Interior</span>
-          <span className="hero__title-line hero__title-italic">by Her</span>
+      <div className="relative z-[2] text-center flex flex-col items-center gap-[24px]">
+        <h1 ref={titleRef} className="flex flex-col items-center gap-0 [perspective:600px]">
+          <span className="hero__title-line block font-display text-[clamp(4rem,12vw,10rem)] font-light text-text-light tracking-[-0.02em] leading-none will-change-[transform,opacity,filter] origin-center">Interior</span>
+          <span className="hero__title-line block font-display text-[clamp(2.5rem,7vw,6rem)] font-light italic text-accent-gold tracking-[0.02em] leading-none will-change-[transform,opacity,filter] origin-center mt-[8px]">by Her</span>
         </h1>
-        <p ref={subtitleRef} className="hero__subtitle">
+        <p ref={subtitleRef} className="font-body text-[clamp(0.85rem,1.3vw,1.1rem)] font-light text-text-light-muted tracking-[0.2em] uppercase mt-[16px]">
           Where elegance meets intention
         </p>
       </div>
-      <div ref={indicatorRef} className="hero__indicator">
-        <div className="hero__indicator-line" />
-        <span className="hero__indicator-text">Scroll to explore</span>
+      <div ref={indicatorRef} className="absolute bottom-[40px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[12px] z-[2]">
+        <div className="w-[1px] h-[50px] bg-accent-gold animate-[scrollPulse_2s_ease-in-out_infinite]" />
+        <span className="text-[0.65rem] font-normal tracking-[0.2em] uppercase text-text-light-muted">Scroll to explore</span>
       </div>
     </section>
   );

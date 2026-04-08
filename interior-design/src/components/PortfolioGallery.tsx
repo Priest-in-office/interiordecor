@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './PortfolioGallery.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,21 +52,21 @@ const PortfolioGallery = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="portfolio" id="portfolio">
-      <div ref={headingRef} className="portfolio__header">
-        <span className="portfolio__label">Selected Work</span>
-        <h2 className="portfolio__heading">Spaces We've <em>Transformed</em></h2>
+    <section ref={containerRef} className="relative overflow-hidden pt-[var(--spacing-section)]" id="portfolio">
+      <div ref={headingRef} className="text-center px-[var(--spacing-container)] pb-[60px]">
+        <span className="font-body text-[0.72rem] font-medium tracking-[0.2em] uppercase text-accent-gold block mb-[16px]">Selected Work</span>
+        <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-light text-text-primary">Spaces We've <em className="italic text-accent-gold">Transformed</em></h2>
       </div>
-      <div ref={trackRef} className="portfolio__track">
+      <div ref={trackRef} className="portfolio__track flex gap-[24px] md:gap-[40px] px-[20px] md:px-[60px] will-change-transform">
         {projects.map(p => (
-          <article key={p.id} className="portfolio__slide" data-cursor="View">
-            <div className="portfolio__img-wrap">
-              <img className="portfolio__img" src={p.image} alt={p.title} loading="lazy" />
+          <article key={p.id} className="flex-shrink-0 w-[85vw] md:w-[70vw] max-w-[900px] flex flex-col gap-[20px] group" data-cursor="View">
+            <div className="relative rounded-[24px] overflow-hidden aspect-[16/10]">
+              <img className="portfolio__img w-[110%] h-full object-cover transition-transform duration-800 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]" src={p.image} alt={p.title} loading="lazy" />
             </div>
-            <div className="portfolio__info">
-              <span className="portfolio__cat">{p.category}</span>
-              <h3 className="portfolio__name">{p.title}</h3>
-              <p className="portfolio__loc">{p.location}</p>
+            <div className="px-[8px]">
+              <span className="text-[0.7rem] font-medium tracking-[0.15em] uppercase text-accent-gold">{p.category}</span>
+              <h3 className="font-display text-[clamp(1.5rem,2.5vw,2rem)] font-normal mt-[6px] text-text-primary">{p.title}</h3>
+              <p className="text-[0.85rem] text-text-secondary mt-[4px]">{p.location}</p>
             </div>
           </article>
         ))}

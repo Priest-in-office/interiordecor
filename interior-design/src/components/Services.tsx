@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Palette, Sofa, Ruler, Home, Sparkles } from 'lucide-react';
-import './Services.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,23 +42,23 @@ const Services = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="services" id="services">
-      <div className="services__inner">
-        <div ref={imageRef} className="services__image-col">
-          <div className="services__image-wrap">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="Beautiful designed room" loading="lazy" />
+    <section ref={sectionRef} className="py-[var(--spacing-section)] overflow-x-hidden" id="services">
+      <div className="w-full max-w-[1400px] mx-auto px-[var(--spacing-container)] grid grid-cols-1 lg:grid-cols-2 gap-[40px] lg:gap-[80px] items-start">
+        <div ref={imageRef} className="relative">
+          <div className="rounded-[24px] overflow-hidden aspect-[16/10] lg:aspect-[3/4]">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80" alt="Beautiful designed room" loading="lazy" className="w-full h-full object-cover" />
           </div>
         </div>
-        <div className="services__content-col">
-          <span className="services__label">What We Offer</span>
-          <h2 className="services__heading">Services Designed <em>for You</em></h2>
-          <div className="services__list">
+        <div className="pt-[40px]">
+          <span className="text-[0.72rem] font-medium tracking-[0.2em] uppercase text-accent-gold block mb-[16px]">What We Offer</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-light text-text-primary mb-[48px]">Services Designed <em className="italic text-accent-gold">for You</em></h2>
+          <div className="flex flex-col gap-[32px]">
             {services.map((s, i) => (
-              <div key={i} className="services__card">
-                <div className="services__icon">{s.icon}</div>
+              <div key={i} className="services__card flex gap-[20px] p-[28px] rounded-[16px] bg-bg-cream transition-all duration-300 hover:-translate-y-[4px] hover:shadow-[0_20px_60px_rgba(0,0,0,0.06)]">
+                <div className="shrink-0 w-[52px] h-[52px] rounded-full bg-accent-gold-light text-accent-gold flex items-center justify-center">{s.icon}</div>
                 <div>
-                  <h3 className="services__card-title">{s.title}</h3>
-                  <p className="services__card-desc">{s.desc}</p>
+                  <h3 className="font-display text-[1.3rem] font-medium mb-[6px]">{s.title}</h3>
+                  <p className="text-[0.88rem] text-text-secondary leading-[1.6]">{s.desc}</p>
                 </div>
               </div>
             ))}

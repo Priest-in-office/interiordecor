@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import './CustomCursor.css';
 
 const CustomCursor = () => {
   const outerRef = useRef<HTMLDivElement>(null);
@@ -59,10 +58,22 @@ const CustomCursor = () => {
 
   return (
     <>
-      <div ref={outerRef} className={`cursor-outer ${isHovering ? 'cursor-outer--hover' : ''} ${cursorText ? 'cursor-outer--text' : ''}`}>
-        {cursorText && <span className="cursor-outer__label">{cursorText}</span>}
+      <div 
+        ref={outerRef} 
+        className={`fixed top-0 left-0 pointer-events-none z-[10000] will-change-transform rounded-full flex items-center justify-center transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] [@media(pointer:coarse)]:hidden ${
+          cursorText 
+            ? 'w-[100px] h-[100px] -ml-[50px] -mt-[50px] bg-accent-gold border-accent-gold' 
+            : isHovering 
+              ? 'w-[60px] h-[60px] -ml-[30px] -mt-[30px] bg-accent-gold-light border-accent-gold' 
+              : 'w-[40px] h-[40px] -ml-[20px] -mt-[20px] border border-accent-gold'
+        }`}
+      >
+        {cursorText && <span className={`font-body text-[0.65rem] font-medium tracking-[0.08em] uppercase text-bg-deep transition-opacity duration-300 ease-in-out ${cursorText ? 'opacity-100' : 'opacity-0'}`}>{cursorText}</span>}
       </div>
-      <div ref={dotRef} className="cursor-dot" />
+      <div 
+        ref={dotRef} 
+        className="fixed top-0 left-0 pointer-events-none z-[10000] will-change-transform w-[6px] h-[6px] -ml-[3px] -mt-[3px] bg-accent-gold rounded-full [@media(pointer:coarse)]:hidden" 
+      />
     </>
   );
 };

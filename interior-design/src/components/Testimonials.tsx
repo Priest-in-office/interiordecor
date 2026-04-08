@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Quote } from 'lucide-react';
-import './Testimonials.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,29 +50,31 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="testi" id="testimonials">
-      <div className="testi__container">
-        <div className="testi__stats">
+    <section ref={sectionRef} className="py-[var(--spacing-section)] bg-bg-cream" id="testimonials">
+      <div className="w-full max-w-[1400px] mx-auto px-[var(--spacing-container)]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-[40px] mb-[80px] text-center">
           {stats.map((s, i) => (
-            <div key={i} className="testi__stat">
-              <span className="testi__stat-value" data-value={s.value}>0</span>
-              <span className="testi__stat-suffix">{s.suffix}</span>
-              <span className="testi__stat-label">{s.label}</span>
+            <div key={i} className="flex flex-col items-center">
+              <div>
+                <span className="testi__stat-value font-display text-[clamp(2.5rem,5vw,4rem)] font-light text-text-primary leading-none" data-value={s.value}>0</span>
+                <span className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-light text-accent-gold inline ml-[2px]">{s.suffix}</span>
+              </div>
+              <span className="text-[0.78rem] text-text-secondary tracking-[0.05em] mt-[8px]">{s.label}</span>
             </div>
           ))}
         </div>
-        <div className="testi__header">
-          <span className="testi__tag">Client Stories</span>
-          <h2 className="testi__heading">Words That <em>Inspire</em> Us</h2>
+        <div className="text-center mb-[60px]">
+          <span className="text-[0.72rem] font-medium tracking-[0.2em] uppercase text-accent-gold block mb-[12px]">Client Stories</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-light text-text-primary">Words That <em className="italic text-accent-gold">Inspire</em> Us</h2>
         </div>
-        <div className="testi__grid">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[32px]">
           {testimonials.map((t, i) => (
-            <div key={i} className="testi__card">
-              <Quote size={32} className="testi__quote-icon" />
-              <p className="testi__quote">{t.quote}</p>
-              <div className="testi__author">
-                <span className="testi__name">{t.name}</span>
-                <span className="testi__role">{t.role}</span>
+            <div key={i} className="testi__card bg-bg-primary p-[32px] lg:p-[40px_32px] rounded-[24px] flex flex-col gap-[20px] transition-all duration-300 hover:-translate-y-[6px] hover:shadow-[0_24px_80px_rgba(0,0,0,0.06)]">
+              <Quote size={32} className="text-accent-gold opacity-40 shrink-0" />
+              <p className="font-display text-[1.15rem] font-normal leading-[1.6] text-text-primary italic grow">{t.quote}</p>
+              <div className="border-t border-[rgba(0,0,0,0.06)] pt-[16px]">
+                <span className="font-body text-[0.85rem] font-medium block text-text-primary">{t.name}</span>
+                <span className="text-[0.78rem] text-text-secondary">{t.role}</span>
               </div>
             </div>
           ))}

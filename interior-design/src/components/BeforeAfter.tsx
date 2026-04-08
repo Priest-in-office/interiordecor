@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import './BeforeAfter.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,21 +39,21 @@ const BeforeAfter = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="ba" id="showcase">
-      <div className="ba__container">
-        <div className="ba__header">
-          <span className="ba__tag">Transformations</span>
-          <h2 className="ba__heading">The Power of <em>Design</em></h2>
+    <section ref={sectionRef} className="relative h-[100vh] flex items-center justify-center bg-bg-dark overflow-hidden" id="showcase">
+      <div className="w-full max-w-[1400px] px-[var(--spacing-container)] flex flex-col items-center gap-[40px]">
+        <div className="text-center">
+          <span className="font-body text-[0.72rem] font-medium tracking-[0.2em] uppercase text-accent-gold block mb-[12px]">Transformations</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-light text-text-light">The Power of <em className="italic text-accent-gold">Design</em></h2>
         </div>
-        <div className="ba__viewer">
-          <div className="ba__before">
-            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=80" alt="Before redesign" />
+        <div className="relative w-full max-w-[1000px] aspect-[16/9] rounded-[24px] overflow-hidden">
+          <div className="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=80" alt="Before redesign" className="w-full h-full object-cover" />
           </div>
-          <div className="ba__after">
-            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=80" alt="After redesign" />
+          <div className="ba__after absolute inset-0 z-[2] [clip-path:inset(0_100%_0_0)]">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400&q=80" alt="After redesign" className="w-full h-full object-cover" />
           </div>
-          <span className="ba__label ba__label--before">Before</span>
-          <span className="ba__label ba__label--after">After</span>
+          <span className="ba__label--before absolute bottom-[24px] left-[24px] z-[3] font-body text-[0.72rem] font-medium tracking-[0.15em] uppercase px-[20px] py-[8px] rounded-[8px] backdrop-blur-[10px] bg-black/50 text-text-light">Before</span>
+          <span className="ba__label--after absolute bottom-[24px] right-[24px] z-[3] font-body text-[0.72rem] font-medium tracking-[0.15em] uppercase px-[20px] py-[8px] rounded-[8px] backdrop-blur-[10px] bg-[rgba(197,164,103,0.9)] text-bg-deep opacity-0">After</span>
         </div>
       </div>
     </section>

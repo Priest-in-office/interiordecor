@@ -1,93 +1,71 @@
-/* ========================================
-   INTERIOR BY HER — Design System
-   ======================================== */
+@import "tailwindcss";
 
-:root {
-  --bg-primary: #FAF8F5;
-  --bg-dark: #1A1A1A;
-  --bg-cream: #F5F0EB;
-  --bg-deep: #0D0D0D;
-  --text-primary: #1A1A1A;
-  --text-secondary: #6B6B6B;
-  --text-tertiary: #999999;
-  --text-light: #FAF8F5;
-  --text-light-muted: rgba(250, 248, 245, 0.6);
-  --accent-gold: #C5A467;
-  --accent-gold-hover: #B08C4A;
-  --accent-gold-light: rgba(197, 164, 103, 0.15);
-  --accent-sage: #8B9D83;
+@theme {
+  --color-bg-primary: #FAF8F5;
+  --color-bg-dark: #1A1A1A;
+  --color-bg-cream: #F5F0EB;
+  --color-bg-deep: #0D0D0D;
+  
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #6B6B6B;
+  --color-text-tertiary: #999999;
+  --color-text-light: #FAF8F5;
+  --color-text-light-muted: rgba(250, 248, 245, 0.6);
+  
+  --color-accent-gold: #C5A467;
+  --color-accent-gold-hover: #B08C4A;
+  --color-accent-gold-light: rgba(197, 164, 103, 0.15);
+  --color-accent-sage: #8B9D83;
+  
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Inter', -apple-system, sans-serif;
-  --section-gap: 140px;
-  --container-max: 1400px;
-  --container-padding: 40px;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-  --transition-fast: 0.3s var(--ease-out-expo);
-  --transition-medium: 0.6s var(--ease-out-expo);
-  --transition-slow: 1s var(--ease-out-expo);
+  
+  --spacing-section: clamp(80px, 10vw, 140px);
+  --spacing-container: clamp(20px, 4vw, 40px);
 }
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+@layer base {
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
 
-html {
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-.lenis.lenis-stopped { overflow: hidden; }
-
-body {
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  background-color: var(--bg-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-body.custom-cursor-active { cursor: none; }
-body.custom-cursor-active a,
-body.custom-cursor-active button,
-body.custom-cursor-active [role="button"] { cursor: none; }
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  line-height: 1.1;
-}
-
-a { text-decoration: none; color: inherit; }
-button { border: none; background: none; font-family: inherit; cursor: pointer; }
-img, video { max-width: 100%; display: block; }
-ul, ol { list-style: none; }
-
-.container {
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
-}
-
-::selection { background-color: var(--accent-gold); color: var(--bg-primary); }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 3px; }
-
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0;
-  margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;
-}
-
-@media (max-width: 768px) {
-  :root {
-    --section-gap: 80px;
-    --container-padding: 20px;
+  body {
+    @apply font-body text-text-primary bg-bg-primary leading-[1.6] overflow-x-hidden antialiased;
   }
+
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active [role="button"] { cursor: none; }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-normal leading-[1.1];
+  }
+
+  ::selection { @apply bg-accent-gold text-bg-primary; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-bg-primary; }
+  ::-webkit-scrollbar-thumb { @apply bg-accent-gold rounded-full; }
+}
+
+@layer components {
+  .container {
+    @apply max-w-[1400px] mx-auto px-[var(--spacing-container)];
+  }
+}
+
+@keyframes preloaderFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
 }
