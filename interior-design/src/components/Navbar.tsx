@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MagneticButton from './MagneticButton';
 
 const navLinks = ['Portfolio', 'Services', 'About', 'Contact'];
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -22,7 +24,7 @@ const Navbar = () => {
     >
       <div className="w-full max-w-[1400px] mx-auto flex items-center justify-between">
         <a href="#home" className="flex items-baseline gap-[8px] z-[1001]">
-          <span className={`font-display text-[1.6rem] font-normal tracking-[0.03em] transition-colors duration-400 ${menuOpen ? 'text-text-light' : 'text-text-primary'}`}>
+          <span className={`font-display text-[1.6rem] font-normal tracking-[0.03em] transition-colors duration-400 ${menuOpen || !scrolled ? 'text-text-light' : 'text-text-primary'}`}>
             Interior
           </span>
           <span className="font-display text-[1.1rem] font-light italic text-accent-gold tracking-[0.03em] transition-colors duration-400">
@@ -35,14 +37,17 @@ const Navbar = () => {
             <a 
               key={l} 
               href={`#${l.toLowerCase()}`} 
-              className="relative font-body text-[0.82rem] font-normal tracking-[0.06em] text-text-secondary transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-text-primary after:content-[''] after:absolute after:-bottom-[4px] after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-accent-gold after:transition-[width] after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)]"
+              className={`relative font-body text-[0.82rem] font-normal tracking-[0.06em] transition-colors duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] after:content-[''] after:absolute after:-bottom-[4px] after:left-0 after:w-0 hover:after:w-full after:h-[1px] after:bg-accent-gold after:transition-[width] after:duration-300 after:ease-[cubic-bezier(0.16,1,0.3,1)] ${scrolled ? 'text-text-secondary hover:text-text-primary' : 'text-text-light/80 hover:text-text-light'}`}
             >
               {l}
             </a>
           ))}
         </div>
         
-        <MagneticButton className="hidden lg:block text-[0.78rem] font-medium tracking-[0.08em] uppercase px-[28px] py-[12px] border border-text-primary text-text-primary transition-colors duration-300 hover:bg-text-primary hover:text-text-light">
+        <MagneticButton
+          onClick={() => navigate('/consultation')}
+          className={`hidden lg:block text-[0.78rem] font-medium tracking-[0.08em] uppercase px-[28px] py-[12px] border transition-colors duration-300 ${scrolled ? 'border-text-primary text-text-primary hover:bg-text-primary hover:text-text-light' : 'border-text-light/80 text-text-light hover:bg-text-light hover:text-text-primary'}`}
+        >
           Book a Consultation
         </MagneticButton>
         
@@ -51,9 +56,9 @@ const Navbar = () => {
           onClick={() => setMenuOpen(!menuOpen)} 
           aria-label="Menu"
         >
-          <span className={`block w-[28px] h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'bg-text-light translate-y-[7.5px] rotate-45' : 'bg-text-primary'}`} />
-          <span className={`block w-[28px] h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'bg-text-light opacity-0' : 'bg-text-primary'}`} />
-          <span className={`block w-[28px] h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'bg-text-light -translate-y-[7.5px] -rotate-45' : 'bg-text-primary'}`} />
+          <span className={`block w-[28px] h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'bg-text-light translate-y-[7.5px] rotate-45' : (scrolled ? 'bg-text-primary' : 'bg-text-light')}`} />
+          <span className={`block w-[28px] h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'bg-text-light opacity-0' : (scrolled ? 'bg-text-primary' : 'bg-text-light')}`} />
+          <span className={`block w-[28px] h-[1.5px] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${menuOpen ? 'bg-text-light -translate-y-[7.5px] -rotate-45' : (scrolled ? 'bg-text-primary' : 'bg-text-light')}`} />
         </button>
       </div>
 
@@ -76,7 +81,7 @@ const Navbar = () => {
           ))}
           <MagneticButton 
             className={`mt-[20px] text-[0.82rem] font-medium tracking-[0.08em] uppercase px-[36px] py-[16px] border border-accent-gold text-accent-gold hover:bg-accent-gold hover:text-bg-deep transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] border-solid ${menuOpen ? 'opacity-100 translate-y-0 delay-500' : 'opacity-0 translate-y-[20px]'}`} 
-            onClick={() => setMenuOpen(false)}
+            onClick={() => { setMenuOpen(false); navigate('/consultation'); }}
           >
             Book a Consultation
           </MagneticButton>
@@ -87,3 +92,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

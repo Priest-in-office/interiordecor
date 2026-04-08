@@ -39,13 +39,13 @@ const BeforeAfter = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[100vh] flex items-center justify-center bg-bg-dark overflow-hidden" id="showcase">
-      <div className="w-full max-w-[1400px] px-[var(--spacing-container)] flex flex-col items-center gap-[40px]">
+    <section ref={sectionRef} className="relative min-h-[100vh] flex flex-col justify-center bg-bg-dark overflow-hidden py-[80px]" id="showcase">
+      <div className="w-full max-w-[1400px] mx-auto px-[var(--spacing-container)] flex flex-col items-center gap-[40px]">
         <div className="text-center">
           <span className="font-body text-[0.72rem] font-medium tracking-[0.2em] uppercase text-accent-gold block mb-[12px]">Transformations</span>
           <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] font-light text-text-light">The Power of <em className="italic text-accent-gold">Design</em></h2>
         </div>
-        <div className="relative w-full max-w-[1000px] aspect-[16/9] rounded-[24px] overflow-hidden">
+        <div className="relative w-full max-w-[1000px] rounded-[24px] overflow-hidden" style={{ aspectRatio: '16/9', maxHeight: 'calc(100vh - 280px)' }}>
           <div className="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=80" alt="Before redesign" className="w-full h-full object-cover" />
           </div>

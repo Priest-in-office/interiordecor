@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,8 +14,26 @@ import BeforeAfter from './components/BeforeAfter';
 import Testimonials from './components/Testimonials';
 import About from './components/About';
 import Contact from './components/Contact';
+import ConsultationPage from './pages/ConsultationPage';
 
 gsap.registerPlugin(ScrollTrigger);
+
+function HomePage() {
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <PortfolioGallery />
+        <Services />
+        <BeforeAfter />
+        <Testimonials />
+        <About />
+        <Contact />
+      </main>
+    </>
+  );
+}
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,20 +66,14 @@ function App() {
   }, []);
 
   return (
-    <>
+    <BrowserRouter>
       {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
       <CustomCursor />
-      <Navbar />
-      <main>
-        <Hero />
-        <PortfolioGallery />
-        <Services />
-        <BeforeAfter />
-        <Testimonials />
-        <About />
-        <Contact />
-      </main>
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/consultation" element={<ConsultationPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

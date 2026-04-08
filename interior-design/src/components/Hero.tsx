@@ -35,17 +35,17 @@ const Hero = () => {
       tl.to(indicatorRef.current, { opacity: 0, y: -20 }, '<');
 
       // Entrance animations
-      gsap.fromTo('.hero__title-line',
+      gsap.fromTo('.hero__title-entrance',
         { y: 100, opacity: 0, rotateX: 40 },
-        { y: 0, opacity: 1, rotateX: 0, duration: 1.4, stagger: 0.18, ease: 'power3.out', delay: 0.1 }
+        { y: 0, opacity: 1, rotateX: 0, duration: 1.4, stagger: 0.18, ease: 'power3.out', delay: 4.8 }
       );
-      gsap.fromTo(subtitleRef.current,
+      gsap.fromTo('.hero__subtitle-entrance',
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.7, ease: 'power3.out' }
+        { y: 0, opacity: 1, duration: 1, delay: 5.4, ease: 'power3.out' }
       );
-      gsap.fromTo(indicatorRef.current,
+      gsap.fromTo('.hero__indicator-entrance',
         { opacity: 0 },
-        { opacity: 1, duration: 1, delay: 1.5 }
+        { opacity: 1, duration: 1, delay: 6.0 }
       );
     }, sectionRef);
 
@@ -64,16 +64,24 @@ const Hero = () => {
       </div>
       <div className="relative z-[2] text-center flex flex-col items-center gap-[24px]">
         <h1 ref={titleRef} className="flex flex-col items-center gap-0 [perspective:600px]">
-          <span className="hero__title-line block font-display text-[clamp(4rem,12vw,10rem)] font-light text-text-light tracking-[-0.02em] leading-none will-change-[transform,opacity,filter] origin-center">Interior</span>
-          <span className="hero__title-line block font-display text-[clamp(2.5rem,7vw,6rem)] font-light italic text-accent-gold tracking-[0.02em] leading-none will-change-[transform,opacity,filter] origin-center mt-[8px]">by Her</span>
+          <span className="hero__title-line block origin-center will-change-[transform,opacity,filter]">
+            <span className="hero__title-entrance block font-display text-[clamp(4rem,12vw,10rem)] font-light text-text-light tracking-[-0.02em] leading-none">Interior</span>
+          </span>
+          <span className="hero__title-line block origin-center will-change-[transform,opacity,filter] mt-[8px]">
+            <span className="hero__title-entrance block font-display text-[clamp(2.5rem,7vw,6rem)] font-light italic text-accent-gold tracking-[0.02em] leading-none">by Her</span>
+          </span>
         </h1>
-        <p ref={subtitleRef} className="font-body text-[clamp(0.85rem,1.3vw,1.1rem)] font-light text-text-light-muted tracking-[0.2em] uppercase mt-[16px]">
-          Where elegance meets intention
-        </p>
+        <div ref={subtitleRef} className="mt-[16px]">
+          <p className="hero__subtitle-entrance font-body text-[clamp(0.85rem,1.3vw,1.1rem)] font-light text-text-light-muted tracking-[0.2em] uppercase">
+            Where elegance meets intention
+          </p>
+        </div>
       </div>
-      <div ref={indicatorRef} className="absolute bottom-[40px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[12px] z-[2]">
-        <div className="w-[1px] h-[50px] bg-accent-gold animate-[scrollPulse_2s_ease-in-out_infinite]" />
-        <span className="text-[0.65rem] font-normal tracking-[0.2em] uppercase text-text-light-muted">Scroll to explore</span>
+      <div ref={indicatorRef} className="absolute bottom-[40px] left-1/2 -translate-x-1/2 z-[2]">
+        <div className="hero__indicator-entrance flex flex-col items-center gap-[12px]">
+          <div className="w-[1px] h-[50px] bg-accent-gold animate-[scrollPulse_2s_ease-in-out_infinite]" />
+          <span className="text-[0.65rem] font-normal tracking-[0.2em] uppercase text-text-light-muted">Scroll to explore</span>
+        </div>
       </div>
     </section>
   );

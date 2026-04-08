@@ -36,6 +36,14 @@ const PortfolioGallery = () => {
           trigger: containerRef.current,
           pin: true,
           scrub: 1,
+          start: () => {
+            // "Allow full view in place before gsap goes in"
+            // If the gallery is taller than the screen, wait until the bottom is visible before pinning.
+            // If it perfectly fits, pin it exactly at the top.
+            return (containerRef.current?.offsetHeight || 0) > window.innerHeight 
+              ? "bottom bottom" 
+              : "top top";
+          },
           end: () => `+=${scrollDist}`,
           invalidateOnRefresh: true,
         },
@@ -52,7 +60,7 @@ const PortfolioGallery = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden pt-[var(--spacing-section)]" id="portfolio">
+    <section ref={containerRef} className="relative overflow-hidden pt-[var(--spacing-section)] pb-[80px]" id="portfolio">
       <div ref={headingRef} className="text-center px-[var(--spacing-container)] pb-[60px]">
         <span className="font-body text-[0.72rem] font-medium tracking-[0.2em] uppercase text-accent-gold block mb-[16px]">Selected Work</span>
         <h2 className="font-display text-[clamp(2.5rem,5vw,4.5rem)] font-light text-text-primary">Spaces We've <em className="italic text-accent-gold">Transformed</em></h2>
@@ -60,7 +68,7 @@ const PortfolioGallery = () => {
       <div ref={trackRef} className="portfolio__track flex gap-[24px] md:gap-[40px] px-[20px] md:px-[60px] will-change-transform">
         {projects.map(p => (
           <article key={p.id} className="flex-shrink-0 w-[85vw] md:w-[70vw] max-w-[900px] flex flex-col gap-[20px] group" data-cursor="View">
-            <div className="relative rounded-[24px] overflow-hidden aspect-[16/10]">
+            <div className="relative rounded-[24px] overflow-hidden aspect-[4/3] md:aspect-[16/10]">
               <img className="portfolio__img w-[110%] h-full object-cover transition-transform duration-800 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]" src={p.image} alt={p.title} loading="lazy" />
             </div>
             <div className="px-[8px]">

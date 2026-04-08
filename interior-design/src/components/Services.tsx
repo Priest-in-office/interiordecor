@@ -21,11 +21,12 @@ const Services = () => {
     const ctx = gsap.context(() => {
       // Pin the image while services scroll
       ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top 10%',
+        trigger: imageRef.current,
+        start: 'top top+=80',
+        endTrigger: sectionRef.current,
         end: 'bottom bottom',
-        pin: imageRef.current,
-        pinSpacing: false,
+        pin: true,
+        // pinSpacing: true (default) — lets GSAP add a spacer so sections don't collapse
       });
 
       gsap.utils.toArray<HTMLElement>('.services__card').forEach((card, i) => {
