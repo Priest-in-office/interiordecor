@@ -20,7 +20,6 @@ const PortfolioGallery = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const track = trackRef.current!;
-      const scrollDist = track.scrollWidth - window.innerWidth;
 
       // Heading fade in
       gsap.fromTo(headingRef.current, { y: 60, opacity: 0 }, {
@@ -28,31 +27,38 @@ const PortfolioGallery = () => {
         scrollTrigger: { trigger: headingRef.current, start: 'top 85%' },
       });
 
-      // Horizontal scroll
-      gsap.to(track, {
-        x: -scrollDist,
+      const getScrollDist = () => track.scrollWidth - window.innerWidth;
+
+      // Horizontal scroll — save to a variable so we can use it for the parallax
+      const scrollTween = gsap.to(track, {
+        x: () => -getScrollDist(),
         ease: 'none',
         scrollTrigger: {
           trigger: containerRef.current,
           pin: true,
           scrub: 1,
           start: () => {
-            // "Allow full view in place before gsap goes in"
-            // If the gallery is taller than the screen, wait until the bottom is visible before pinning.
-            // If it perfectly fits, pin it exactly at the top.
             return (containerRef.current?.offsetHeight || 0) > window.innerHeight 
               ? "bottom bottom" 
               : "top top";
           },
-          end: () => `+=${scrollDist}`,
+          end: () => `+=${getScrollDist()}`,
           invalidateOnRefresh: true,
         },
       });
 
       // Parallax on each image
       gsap.utils.toArray<HTMLElement>('.portfolio__img').forEach(img => {
-        gsap.fromTo(img, { x: 80 }, { x: -80, ease: 'none',
-          scrollTrigger: { trigger: img, containerAnimation: undefined, scrub: true },
+        gsap.fromTo(img, 
+          { xPercent: 0 }, 
+          { xPercent: -10, ease: 'none',
+          scrollTrigger: { 
+            trigger: img.parentElement, 
+            containerAnimation: scrollTween, 
+            start: 'left right',
+            end: 'right left',
+            scrub: true 
+          },
         });
       });
     }, containerRef);

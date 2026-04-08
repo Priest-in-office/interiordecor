@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-[1000] px-[20px] py-[16px] lg:px-[40px] lg:py-[20px] transition-all duration-500 ease-in-out ${
+      className={`absolute lg:fixed top-0 left-0 right-0 z-[1000] px-[20px] py-[16px] lg:px-[40px] lg:py-[20px] transition-all duration-500 ease-in-out ${
         scrolled ? 'bg-bg-primary/85 backdrop-blur-[20px] !py-[12px] lg:!py-[14px] border-b border-text-primary/5' : ''
       }`} 
       id="navbar"
