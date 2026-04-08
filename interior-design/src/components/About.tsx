@@ -51,7 +51,7 @@ const About = () => {
             "I believe your space should be a reflection of who you are at your most peaceful. That's the starting point of every design."
           </p>
           <div className="about__reveal mt-[32px] pt-[24px] border-t border-black/8">
-            <span className="font-display text-[1.3rem] font-medium block">Interior by Her</span>
+            <span className="font-display text-[1.3rem] font-medium block">Curves & Edges Interiors</span>
             <span className="text-[0.82rem] text-text-secondary block mt-[4px]">Founder & Creative Director</span>
           </div>
         </div>

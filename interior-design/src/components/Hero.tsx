@@ -65,10 +65,10 @@ const Hero = () => {
       <div className="relative z-[2] text-center flex flex-col items-center gap-[24px]">
         <h1 ref={titleRef} className="flex flex-col items-center gap-0 [perspective:600px]">
           <span className="hero__title-line block origin-center will-change-[transform,opacity,filter]">
-            <span className="hero__title-entrance block font-display text-[clamp(4rem,12vw,10rem)] font-light text-text-light tracking-[-0.02em] leading-none">Interior</span>
+            <span className="hero__title-entrance block font-display text-[clamp(4rem,12vw,10rem)] font-light text-text-light tracking-[-0.02em] leading-none">Curves & Edges</span>
           </span>
           <span className="hero__title-line block origin-center will-change-[transform,opacity,filter] mt-[8px]">
-            <span className="hero__title-entrance block font-display text-[clamp(2.5rem,7vw,6rem)] font-light italic text-accent-gold tracking-[0.02em] leading-none">by Her</span>
+            <span className="hero__title-entrance block font-display text-[clamp(2.5rem,7vw,6rem)] font-light italic text-accent-gold tracking-[0.02em] leading-none">Interiors</span>
           </span>
         </h1>
         <div ref={subtitleRef} className="mt-[16px]">

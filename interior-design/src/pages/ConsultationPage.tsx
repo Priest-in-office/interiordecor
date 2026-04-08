@@ -41,9 +41,9 @@ const ConsultationPage = () => {
             <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-[4px]" />
             Back to Home
           </button>
-          <div className="flex items-baseline gap-[6px]">
-            <span className="font-display text-[1.2rem] font-normal text-text-light tracking-[0.03em]">Interior</span>
-            <span className="font-display text-[0.85rem] font-light italic text-accent-gold tracking-[0.03em]">by Her</span>
+          <div className="flex items-baseline gap-[8px]">
+            <span className="font-display text-[1.2rem] font-normal text-text-light tracking-[0.03em]">Curves & Edges</span>
+            <span className="font-display text-[0.85rem] font-light italic text-accent-gold tracking-[0.03em]">Interiors</span>
           </div>
         </div>
       </div>
@@ -177,7 +177,7 @@ const ConsultationPage = () => {
       {/* Mini Footer */}
       <div className="border-t border-white/8">
         <div className="w-full max-w-[900px] mx-auto px-[24px] md:px-[48px] py-[24px] flex flex-col md:flex-row items-center justify-between gap-[12px] text-center md:text-left">
-          <p className="text-[0.72rem] text-text-light-muted">© {new Date().getFullYear()} Interior by Her. All rights reserved.</p>
+          <p className="text-[0.72rem] text-text-light-muted">© {new Date().getFullYear()} Curves & Edges Interiors. All rights reserved.</p>
           <div className="flex gap-[16px]">
             <a href="#" className="text-[0.72rem] text-text-light-muted transition-colors duration-300 hover:text-accent-gold">Privacy</a>
             <a href="#" className="text-[0.72rem] text-text-light-muted transition-colors duration-300 hover:text-accent-gold">Terms</a>

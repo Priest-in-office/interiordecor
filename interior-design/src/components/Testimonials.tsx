@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonials = [
   { quote: "She didn\'t just redesign our home — she understood how we wanted to feel in it. Every corner tells our story now.", name: 'Adaeze Okonkwo', role: 'Homeowner, Lagos' },
   { quote: "The attention to detail was extraordinary. From the texture of the fabrics to the placement of every light fixture — pure artistry.", name: 'James & Sarah Chen', role: 'Penthouse Clients, London' },
-  { quote: "Working with Interior by Her turned our boutique hotel vision into something beyond our imagination. Guests constantly ask who designed it.", name: 'Fatima Al-Rashid', role: 'Hotelier, Dubai' },
+  { quote: "Working with Curves & Edges Interiors turned our boutique hotel vision into something beyond our imagination. Guests constantly ask who designed it.", name: 'Fatima Al-Rashid', role: 'Hotelier, Dubai' },
 ];
 
 const stats = [

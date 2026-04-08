@@ -27,8 +27,8 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
     <div className={`fixed inset-0 z-[9999] bg-bg-deep flex items-center justify-center transition-[clip-path] duration-[1200ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${isExiting ? '[clip-path:inset(0_0_100%_0)]' : '[clip-path:inset(0_0_0_0)]'}`}>
       <div className="flex flex-col items-center gap-[40px]">
         <div className="flex flex-col items-center gap-[4px]">
-          <span className="font-display text-[clamp(2.5rem,5vw,4rem)] font-light text-text-light tracking-[0.08em] opacity-0 animate-[preloaderFadeIn_1s_ease-out_forwards]">Interior</span>
-          <span className="font-display text-[clamp(1.2rem,2.5vw,1.8rem)] font-light italic text-accent-gold tracking-[0.05em] opacity-0 animate-[preloaderFadeIn_1s_ease-out_0.3s_forwards]">by Her</span>
+          <span className="font-display text-[clamp(2.5rem,5vw,4rem)] font-light text-text-light tracking-[0.08em] opacity-0 animate-[preloaderFadeIn_1s_ease-out_forwards]">Curves & Edges</span>
+          <span className="font-display text-[clamp(1.2rem,2.5vw,1.8rem)] font-light italic text-accent-gold tracking-[0.05em] opacity-0 animate-[preloaderFadeIn_1s_ease-out_0.3s_forwards]">Interiors</span>
         </div>
         <div className="w-[200px] h-[1px] bg-white/15 rounded-[1px] overflow-hidden">
           <div className="h-full bg-accent-gold transition-[width] duration-300 ease-out" style={{ width: `${Math.min(progress, 100)}%` }} />

@@ -25,10 +25,10 @@ const Navbar = () => {
       <div className="w-full max-w-[1400px] mx-auto flex items-center justify-between">
         <a href="#home" className="flex items-baseline gap-[8px] z-[1001]">
           <span className={`font-display text-[1.6rem] font-normal tracking-[0.03em] transition-colors duration-400 ${menuOpen || !scrolled ? 'text-text-light' : 'text-text-primary'}`}>
-            Interior
+            Curves & Edges
           </span>
           <span className="font-display text-[1.1rem] font-light italic text-accent-gold tracking-[0.03em] transition-colors duration-400">
-            by Her
+            Interiors
           </span>
         </a>
         

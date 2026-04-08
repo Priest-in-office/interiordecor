@@ -104,11 +104,11 @@ const Contact = () => {
       {/* Footer */}
       <footer className="border-t border-[rgba(255,255,255,0.08)]">
         <div className="w-full max-w-[1400px] mx-auto py-[32px] px-[var(--spacing-container)] flex flex-col lg:flex-row items-center justify-between gap-[16px] lg:gap-0 text-center lg:text-left">
-          <div className="flex items-baseline gap-[6px]">
-            <span className="font-display text-[1.1rem] text-text-light">Interior</span>
-            <span className="font-display text-[0.85rem] italic text-accent-gold">by Her</span>
+          <div className="flex items-baseline gap-[8px]">
+            <span className="font-display text-[1.1rem] text-text-light">Curves & Edges</span>
+            <span className="font-display text-[0.85rem] italic text-accent-gold">Interiors</span>
           </div>
-          <p className="text-[0.78rem] text-text-light-muted">© {new Date().getFullYear()} Interior by Her. All rights reserved.</p>
+          <p className="text-[0.78rem] text-text-light-muted">© {new Date().getFullYear()} Curves & Edges Interiors. All rights reserved.</p>
           <div className="flex gap-[20px]">
             <a href="#" className="text-[0.78rem] text-text-light-muted transition-colors duration-300 hover:text-accent-gold">Privacy</a>
             <a href="#" className="text-[0.78rem] text-text-light-muted transition-colors duration-300 hover:text-accent-gold">Terms</a>
